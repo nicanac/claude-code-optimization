@@ -1,0 +1,20 @@
+# Project Memory Guidelines (CLAUDE.md Template)
+
+Keep this file strictly between 150-200 lines to prevent context bloat and memory degradation.
+
+## Core Architecture Map
+- **Frontend**: Component trees, design tokens, and client routing.
+- **Backend API**: Controller endpoints, authentication, and service orchestration.
+- **Data Persistence**: Database migrations, models, and query builders.
+
+## Global Verification & Commands
+- Build: `npm run build`
+- Unit Tests: `npm test`
+- Lint: `npm run lint`
+- Clean Checkouts: `claude --worktree <feature-name>`
+
+## Multi-Tier Agent Workflows
+- **Planning**: Switch to Plan Mode (`Shift + Tab`) or run `/architect-plan` before modifying code.
+- **Sub-Agent Delegation**: Delegate log analysis to `/log-triage` and codebase searches to `Explore` (runs on Haiku).
+- **Frontend Verification**: Run `/visual-qa` before marking UI issues closed.
+- **Compaction**: Execute `/compact` when telemetry hits 60% context capacity.

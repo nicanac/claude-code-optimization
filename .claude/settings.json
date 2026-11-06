@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "env": {
+    "CLAUDE_CODE_SUBAGENT_MODEL": "haiku",
+    "CLAUDE_CODE_PROMPT_CACHE_TTL": "1h",
+    "CLAUDE_CODE_SUBAGENT_PROMPT_CACHE_TTL": "5m"
+  },
+  "permissions": {
+    "allow": [
+      "Read",
+      "Grep",
+      "Glob",
+      "Bash(npm run test*)",
+      "Bash(npm run lint*)",
+      "Bash(git status*)",
+      "Bash(git diff*)"
+    ],
+    "deny": [
+      "Agent(model:opus)",
+      "Agent(model:fable)",
+      "Bash(rm -rf *)",
+      "Bash(git push --force*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'POST-COMPACTION REMINDER: Main thread runs on Opus; delegate all log parsing, bulk reading, and scraping to haiku-io-worker or Explore (Haiku). Keep Haiku sub-agents below 85K tokens. Run /visual-qa before marking UI tasks complete.'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Glass.aiff 2>/dev/null || paplay /usr/share/sounds/freedesktop/stereo/complete.oga 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}
